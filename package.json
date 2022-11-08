@@ -1,0 +1,30 @@
+{
+    "name": "strapi-plugin-multi-select",
+    "description": "A strapi custom field for a multi select input.",
+    "keywords": [
+        "strapi",
+        "strapi-plugin",
+        "custom-fields",
+        "multi-select"
+    ],
+    "version": "1.0.0",
+    "strapi": {
+        "name": "multi-select",
+        "description": "A strapi custom field for a multi select input.",
+        "kind": "plugin",
+        "displayName": "Multi-Select"
+    },
+    "author": {
+        "name": "Zaydme",
+        "email": "zaydme8@gmail.com",
+        "url": "https://zayd.dev"
+    },
+    "license": "MIT",
+    "peerDependencies": {
+        "@strapi/strapi": "^4.4.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Zaydme/strapi-plugin-multi-select.git"
+    }
+}
