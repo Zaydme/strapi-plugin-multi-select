@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Select, Option } from '@strapi/design-system/Select'
 import { useIntl } from 'react-intl'
@@ -17,13 +17,37 @@ const MultiSelect = ({
 }) => {
   const { formatMessage } = useIntl()
 
+  const possibleOptions = useMemo(() => {
+    return (attribute['options'] || []).map((option) => {
+      const [label, value] = [...option.split(':'), option]
+      if (!label || !value) return null
+      return { label, value }
+    }).filter(Boolean)
+  }, [attribute])
+
+  const sanitizedValue = useMemo(() => {
+    let parsedValue
+    try {
+      parsedValue = JSON.parse(value || '[]')
+    } catch (e) {
+      parsedValue = []
+    }
+    return Array.isArray(parsedValue)
+      ? parsedValue.filter((val) =>
+          possibleOptions.some((option) => option.value === val),
+        )
+      : []
+  }, [value, possibleOptions])
+
   return (
     <Select
       name={name}
       id={name}
       label={formatMessage(intlLabel)}
-      error={error}
-      disabled={disabled}
+      error={
+        error || (required && !possibleOptions.length ? 'No options' : null)
+      }
+      disabled={disabled || possibleOptions.length === 0}
       required={required}
       hint={description && formatMessage(description)}
       onChange={(v) => {
@@ -37,19 +61,13 @@ const MultiSelect = ({
       }}
       placeholder={placeholder}
       multi
-      value={JSON.parse(value || '[]')}
+      value={sanitizedValue}
       withTags>
-      {(attribute['options'] || [])
-        .map((extraOption) =>
-          [...extraOption.split(':'), extraOption].slice(0, 2),
-        )
-        .map(([label, value]) => (
-          <Option
-            value={value}
-            key={value}>
-            {label}
-          </Option>
-        ))}
+      {possibleOptions.map(({ label, value }) => (
+        <Option value={value} key={value}>
+          {label}
+        </Option>
+      ))}
     </Select>
   )
 }
