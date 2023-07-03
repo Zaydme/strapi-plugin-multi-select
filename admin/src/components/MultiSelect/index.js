@@ -65,7 +65,7 @@ const MultiSelect = ({
       withTags>
       {possibleOptions.map(({ label, value }) => (
         <Option value={value} key={value}>
-          {label}
+          {formatMessage({ id: label, defaultMessage: label })}
         </Option>
       ))}
     </Select>
