@@ -1,7 +1,56 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Select, Option } from '@strapi/design-system/Select'
+import {
+  Tag,
+  Field,
+  FieldLabel,
+  FieldHint,
+  FieldError,
+  Flex,
+} from '@strapi/design-system'
+import { Cross } from '@strapi/icons'
+import { ReactSelect } from '@strapi/helper-plugin'
+
 import { useIntl } from 'react-intl'
+import styled from 'styled-components'
+import { components } from 'react-select'
+
+const CustomMultiValueContainer = (props) => {
+  const { selectProps } = props
+  const handleTagClick = (value) => (e) => {
+    e.preventDefault()
+    selectProps.onChange(selectProps.value.filter((v) => v !== value))
+  }
+  return (
+    <Tag
+      type="button"
+      tabIndex={-1}
+      icon={<Cross />}
+      onClick={handleTagClick(props.data)}
+    >
+      {props.data.label}
+    </Tag>
+  )
+}
+
+const StyleSelect = styled(ReactSelect)`
+  .select-control {
+    height: auto;
+
+    & > div:first-child {
+      padding: 4px;
+      gap: 4px;
+
+      & > div {
+        padding-left: 8px;
+      }
+    }
+
+    .select-multi-value-container {
+      margin-right: -8px;
+    }
+  }
+`
 
 const MultiSelect = ({
   value,
@@ -18,11 +67,13 @@ const MultiSelect = ({
   const { formatMessage } = useIntl()
 
   const possibleOptions = useMemo(() => {
-    return (attribute['options'] || []).map((option) => {
-      const [label, value] = [...option.split(':'), option]
-      if (!label || !value) return null
-      return { label, value }
-    }).filter(Boolean)
+    return (attribute['options'] || [])
+      .map((option) => {
+        const [label, value] = [...option.split(':'), option]
+        if (!label || !value) return null
+        return { label, value }
+      })
+      .filter(Boolean)
   }, [attribute])
 
   const sanitizedValue = useMemo(() => {
@@ -33,42 +84,59 @@ const MultiSelect = ({
       parsedValue = []
     }
     return Array.isArray(parsedValue)
-      ? parsedValue.filter((val) =>
-          possibleOptions.some((option) => option.value === val),
+      ? possibleOptions.filter((option) =>
+          parsedValue.some((val) => option.value === val)
         )
       : []
   }, [value, possibleOptions])
 
+  const fieldError = useMemo(() => {
+    return error || (required && !possibleOptions.length ? 'No options' : null)
+  }, [required, error, possibleOptions])
+
   return (
-    <Select
-      name={name}
-      id={name}
-      label={formatMessage(intlLabel)}
-      error={
-        error || (required && !possibleOptions.length ? 'No options' : null)
-      }
-      disabled={disabled || possibleOptions.length === 0}
-      required={required}
+    <Field
       hint={description && formatMessage(description)}
-      onChange={(v) => {
-        onChange({
-          target: {
-            name: name,
-            value: JSON.stringify(v.filter(Boolean)),
-            type: attribute.type,
-          },
-        })
-      }}
-      placeholder={placeholder}
-      multi
-      value={sanitizedValue}
-      withTags>
-      {possibleOptions.map(({ label, value }) => (
-        <Option value={value} key={value}>
-          {label}
-        </Option>
-      ))}
-    </Select>
+      error={fieldError}
+      name={name}
+      required={required}
+    >
+      <Flex direction="column" alignItems="stretch" gap={1}>
+        <FieldLabel>{formatMessage(intlLabel)}</FieldLabel>
+        <StyleSelect
+          isSearchable
+          isMulti
+          error={fieldError}
+          name={name}
+          id={name}
+          disabled={disabled || possibleOptions.length === 0}
+          placeholder={placeholder}
+          defaultValue={sanitizedValue}
+          components={{
+            MultiValueContainer: CustomMultiValueContainer,
+          }}
+          options={possibleOptions}
+          onChange={(val) => {
+            onChange({
+              target: {
+                name: name,
+                value: val?.length
+                  ? JSON.stringify(val.filter((v) => !!v).map((v) => v.value))
+                  : null,
+                type: attribute.type,
+              },
+            })
+          }}
+          classNames={{
+            control: (_state) => 'select-control',
+            multiValue: (_state) => 'select-multi-value',
+            placeholder: (_state) => 'select-placeholder',
+          }}
+        />
+        <FieldHint />
+        <FieldError />
+      </Flex>
+    </Field>
   )
 }
 
