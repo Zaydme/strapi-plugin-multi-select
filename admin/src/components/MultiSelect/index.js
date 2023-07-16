@@ -13,7 +13,6 @@ import { ReactSelect } from '@strapi/helper-plugin'
 
 import { useIntl } from 'react-intl'
 import styled from 'styled-components'
-import { components } from 'react-select'
 
 const CustomMultiValueContainer = (props) => {
   const { selectProps } = props
@@ -26,8 +25,7 @@ const CustomMultiValueContainer = (props) => {
       type="button"
       tabIndex={-1}
       icon={<Cross />}
-      onClick={handleTagClick(props.data)}
-    >
+      onClick={handleTagClick(props.data)}>
       {props.data.label}
     </Tag>
   )
@@ -85,7 +83,7 @@ const MultiSelect = ({
     }
     return Array.isArray(parsedValue)
       ? possibleOptions.filter((option) =>
-          parsedValue.some((val) => option.value === val)
+          parsedValue.some((val) => option.value === val),
         )
       : []
   }, [value, possibleOptions])
@@ -99,8 +97,7 @@ const MultiSelect = ({
       hint={description && formatMessage(description)}
       error={fieldError}
       name={name}
-      required={required}
-    >
+      required={required}>
       <Flex direction="column" alignItems="stretch" gap={1}>
         <FieldLabel>{formatMessage(intlLabel)}</FieldLabel>
         <StyleSelect
@@ -120,9 +117,10 @@ const MultiSelect = ({
             onChange({
               target: {
                 name: name,
-                value: val?.length
-                  ? JSON.stringify(val.filter((v) => !!v).map((v) => v.value))
-                  : null,
+                value:
+                  val?.length && val.filter((v) => !!v)
+                    ? JSON.stringify(val.filter((v) => !!v).map((v) => v.value))
+                    : null,
                 type: attribute.type,
               },
             })
