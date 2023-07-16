@@ -108,11 +108,23 @@ const MultiSelect = ({
           id={name}
           disabled={disabled || possibleOptions.length === 0}
           placeholder={placeholder}
-          defaultValue={sanitizedValue}
+          defaultValue={sanitizedValue.map((val) => ({
+            label: formatMessage({
+              id: val.label,
+              defaultMessage: val.label,
+            }),
+            value: val.value,
+          }))}
           components={{
             MultiValueContainer: CustomMultiValueContainer,
           }}
-          options={possibleOptions}
+          options={possibleOptions.map((option) => ({
+            ...option,
+            label: formatMessage({
+              id: option.label,
+              defaultMessage: option.label,
+            }),
+          }))}
           onChange={(val) => {
             onChange({
               target: {
