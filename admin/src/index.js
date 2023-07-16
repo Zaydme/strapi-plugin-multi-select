@@ -66,6 +66,19 @@ export default {
                     "You won't be able to create an entry if this field is empty",
                 },
               },
+              {
+                name: 'private',
+                type: 'checkbox',
+                intlLabel: {
+                  id: 'form.attribute.item.private',
+                  defaultMessage: 'Private field',
+                },
+                description: {
+                  id: 'form.attribute.item.private.description',
+                  defaultMessage:
+                    'This field will not show up in the API response',
+                },
+              },
             ],
           },
         ],
