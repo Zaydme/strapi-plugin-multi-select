@@ -7,7 +7,7 @@
         "custom-fields",
         "multi-select"
     ],
-    "version": "1.2.0",
+    "version": "1.2.1",
     "strapi": {
         "name": "multi-select",
         "description": "A strapi custom field for a multi select input.",

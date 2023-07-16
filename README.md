@@ -2,6 +2,13 @@
 
 A strapi custom field for selecting multiple options from a provided list of items.
 
+### CHANGELOG
+**1.2.1** Localize option label
+example usage: `my.custom.translations.key:value`
+**1.2.0** Replace strapi select with react-select**
+
+
+
 ## Installation
 
 To install this plugin, you need to add an NPM dependency to your Strapi application:
