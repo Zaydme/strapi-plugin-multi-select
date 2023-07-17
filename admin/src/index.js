@@ -36,7 +36,7 @@ export default {
                 description: {
                   id: getTrad('multi-select.enum.description'),
                   defaultMessage:
-                    'Enter one option per line. You can also add a value and a label separated by a colon (e.g. "label:value").\nIf no value is provided, the label will be used as the value.',
+                    'Enter one option per line. You can also add a value and a label separated by a colon (e.g. "label:value").\nIf no value is provided, the label will be used as the value',
                 },
                 placeholder: {
                   id: getTrad('multi-select.enum.placeholder'),

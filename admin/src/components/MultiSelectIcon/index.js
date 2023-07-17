@@ -20,6 +20,7 @@ const MultiSelectIcon = () => {
       alignItems="center"
       width={7}
       height={6}
+      padding={1}
       hasRadius
       aria-hidden>
       <Icon as={CheckIcon} />
