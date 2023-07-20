@@ -4,7 +4,9 @@ A strapi custom field for selecting multiple options from a provided list of ite
 
 ### CHANGELOG
 **1.2.1** Localize option label
-example usage: `my.custom.translations.key:value`
+
+> example usage: `my.custom.translations.key:value`
+
 **1.2.0** Replace strapi select with react-select**
 
 
