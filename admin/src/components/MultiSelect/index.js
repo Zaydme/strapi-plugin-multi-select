@@ -77,7 +77,8 @@ const MultiSelect = ({
   const sanitizedValue = useMemo(() => {
     let parsedValue
     try {
-      parsedValue = JSON.parse(value || '[]')
+      const defaultValue = attribute['default'] || '[]'
+      parsedValue = JSON.parse(value || defaultValue ) 
     } catch (e) {
       parsedValue = []
     }
