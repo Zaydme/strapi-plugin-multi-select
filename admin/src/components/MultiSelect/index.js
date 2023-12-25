@@ -67,7 +67,7 @@ const MultiSelect = ({
   const possibleOptions = useMemo(() => {
     return (attribute['options'] || [])
       .map((option) => {
-        const [label, value] = [...option.split(':'), option]
+        const [label, value] = [...option.split(/:(.*)/s), option]
         if (!label || !value) return null
         return { label, value }
       })

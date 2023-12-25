@@ -3,12 +3,17 @@
 A strapi custom field for selecting multiple options from a provided list of items.
 
 ### CHANGELOG
+
+**1.2.2** Support colons in option values, only first colon is used as separator 
+
+> example usage: `this_is_label:all:of:this:is:value`
+
 **1.2.1** Localize option label
 
 > example usage: `my.custom.translations.key:value`
 
-**1.2.0** Replace strapi select with react-select**
 
+**1.2.0** Replace strapi select with react-select
 
 
 ## Installation
