@@ -7,7 +7,7 @@
         "custom-fields",
         "multi-select"
     ],
-    "version": "1.2.3",
+    "version": "2.0.0",
     "strapi": {
         "name": "multi-select",
         "description": "A strapi custom field for a multi select input.",
@@ -21,7 +21,9 @@
     },
     "license": "MIT",
     "peerDependencies": {
-        "@strapi/strapi": "^4.4.0"
+        "@strapi/strapi": "^5.0.0",
+	"react-select": "5.7.0",
+	"styled-components": "^6.0.0"
     },
     "repository": {
         "type": "git",

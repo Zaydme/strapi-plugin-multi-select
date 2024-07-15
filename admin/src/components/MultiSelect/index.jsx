@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 import {
   Tag,
   Field,
-  FieldLabel,
-  FieldHint,
-  FieldError,
   Flex,
 } from '@strapi/design-system'
 import { Cross } from '@strapi/icons'
-import { ReactSelect } from '@strapi/helper-plugin'
+import { ReactSelect } from './ReactSelect'
+import { useField } from '@strapi/strapi/admin';
 
 import { useIntl } from 'react-intl'
 import styled from 'styled-components'
@@ -34,6 +32,8 @@ const CustomMultiValueContainer = (props) => {
 const StyleSelect = styled(ReactSelect)`
   .select-control {
     height: auto;
+    background: ${({ theme }) => theme.colors.neutral0};
+    border: 1px solid ${({ theme }) => theme.colors.neutral200};
 
     & > div:first-child {
       padding: 4px;
@@ -48,11 +48,18 @@ const StyleSelect = styled(ReactSelect)`
       margin-right: -8px;
     }
   }
+  .select-menu {
+    background: ${({ theme }) => theme.colors.neutral0};
+
+    .option-focused {
+      background: ${({ theme }) => theme.colors.neutral200};
+    }
+  }
 `
 
 const MultiSelect = ({
-  value,
-  onChange,
+  hint,
+  label,
   name,
   intlLabel,
   required,
@@ -60,9 +67,19 @@ const MultiSelect = ({
   description,
   placeholder,
   disabled,
-  error,
+} = {
+  intlLabel: {id: '', defaultMessage: ''},
+  attribute: {},
+  hint: '',
+  label: '',
+  name: '',
+  description: null,
+  placeholder: '',
+  disabled: false,
+  required: false,
 }) => {
   const { formatMessage } = useIntl()
+  const { onChange, value, error } = useField(name);
 
   const possibleOptions = useMemo(() => {
     return (attribute['options'] || [])
@@ -77,7 +94,7 @@ const MultiSelect = ({
   const sanitizedValue = useMemo(() => {
     let parsedValue
     try {
-      parsedValue = JSON.parse(value || '[]')
+      parsedValue = typeof value !== 'string' ? value : JSON.parse(value || '[]')
     } catch (e) {
       parsedValue = []
     }
@@ -86,27 +103,27 @@ const MultiSelect = ({
           parsedValue.some((val) => option.value === val),
         )
       : []
-  }, [value, possibleOptions])
+  }, [value, possibleOptions]);
 
   const fieldError = useMemo(() => {
     return error || (required && !possibleOptions.length ? 'No options' : null)
   }, [required, error, possibleOptions])
 
   return (
-    <Field
-      hint={description && formatMessage(description)}
+    <Field.Root
+      hint={description?.id ? formatMessage(description) : hint}
       error={fieldError}
       name={name}
       required={required}>
       <Flex direction="column" alignItems="stretch" gap={1}>
-        <FieldLabel>{formatMessage(intlLabel)}</FieldLabel>
+        <Field.Label>{intlLabel?.id ? formatMessage(intlLabel) : label}</Field.Label>
         <StyleSelect
-          isSearchable
-          isMulti
+          isSearchable={true}
+          isMulti={true}
           error={fieldError}
           name={name}
           id={name}
-          disabled={disabled || possibleOptions.length === 0}
+          isDisabled={disabled || possibleOptions.length === 0}
           placeholder={placeholder}
           defaultValue={sanitizedValue.map((val) => ({
             label: formatMessage({
@@ -141,28 +158,23 @@ const MultiSelect = ({
             control: (_state) => 'select-control',
             multiValue: (_state) => 'select-multi-value',
             placeholder: (_state) => 'select-placeholder',
+            menuList: (_state) => 'select-listbox',
+            menu: (_state) => 'select-menu',
+            option: (state) => state.isFocused ? 'option-focused': 'option'
           }}
         />
-        <FieldHint />
-        <FieldError />
+        <Field.Hint />
+        <Field.Error />
       </Flex>
-    </Field>
+    </Field.Root>
   )
 }
 
-MultiSelect.defaultProps = {
-  description: null,
-  disabled: false,
-  error: null,
-  labelAction: null,
-  required: false,
-  value: '',
-}
-
 MultiSelect.propTypes = {
-  intlLabel: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
+  intlLabel: PropTypes.object,
   attribute: PropTypes.object.isRequired,
+  hint: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.object,
   disabled: PropTypes.bool,

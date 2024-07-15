@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Icon } from '@strapi/design-system/Icon'
-import { Flex } from '@strapi/design-system/Flex'
-import CheckIcon from '@strapi/icons/Check'
+import { IconButton, Flex } from '@strapi/design-system'
+import { Check} from '@strapi/icons'
 
 const IconBox = styled(Flex)`
   background-color: #f0f0ff; /* primary100 */
@@ -23,7 +22,7 @@ const MultiSelectIcon = () => {
       padding={1}
       hasRadius
       aria-hidden>
-      <Icon as={CheckIcon} />
+      <IconButton as={Check} />
     </IconBox>
   )
 }

@@ -1,4 +1,3 @@
-import { prefixPluginTranslations } from '@strapi/helper-plugin'
 import pluginId from './pluginId'
 import MultiSelectIcon from './components/MultiSelectIcon'
 import getTrad from './utils/getTrad'
@@ -92,12 +91,7 @@ export default {
         return Promise.all([import(`./translations/${locale}.json`)])
           .then(([pluginTranslations]) => {
             return {
-              data: {
-                ...prefixPluginTranslations(
-                  pluginTranslations.default,
-                  pluginId,
-                ),
-              },
+              data: Object.keys(pluginTranslations.default).reduce((acc, current) => ({...acc, [`${pluginId}.${current}`]: trad[current]})),
               locale,
             }
           })
