@@ -47,9 +47,11 @@ const MultiSelect = ({
       parsedValue = [];
     }
     return Array.isArray(parsedValue)
-      ? possibleOptions.filter((option: { label: string; value: string }) =>
-          parsedValue.some((val) => option.value === val)
-        )
+      ? parsedValue
+          .map((val) =>
+            possibleOptions.find((option: { label: string; value: string }) => option.value === val)
+          )
+          .filter((option) => !!option)
       : [];
   }, [value, possibleOptions]);
 
