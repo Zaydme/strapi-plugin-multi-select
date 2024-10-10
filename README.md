@@ -3,6 +3,12 @@
 A strapi custom field for selecting multiple options from a provided list of items.
 
 ### CHANGELOG
+**2.1.0**
+- Add default value support [#16](https://github.com/Zaydme/strapi-plugin-multi-select/issues/16)
+- Add Min and Max selection limits
+
+![multi-select screenshot default value JSON](./screenshots/multi-select-default-value.png)
+
 **2.0.1**
 - Preserve selection order when displaying previously selected options [#21](https://github.com/Zaydme/strapi-plugin-multi-select/issues/21)
 
