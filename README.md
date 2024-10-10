@@ -3,6 +3,10 @@
 A strapi custom field for selecting multiple options from a provided list of items.
 
 ### CHANGELOG
+**2.0.0**
+- Migrated to Strapi v5, and the new plugin structure
+- Now using @strapi/sdk-plugin
+- Migrated to TypeScript
 
 **1.2.2** Support colons in option values, only first colon is used as separator 
 
