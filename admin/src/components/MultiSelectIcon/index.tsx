@@ -17,8 +17,8 @@ const MultiSelectIcon: React.FC = () => {
     <IconBox
       justifyContent="center"
       alignItems="center"
-      width={8}
-      height={7}
+      width={7}
+      height={6}
       hasRadius
       aria-hidden>
       <CheckIcon />

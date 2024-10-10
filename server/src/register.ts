@@ -6,5 +6,9 @@ export const register = ({ strapi }: { strapi: Core.Strapi }) => {
     name: 'multi-select',
     plugin: PLUGIN_ID,
     type: 'json',
+    inputSize: {
+      default: 12,
+      isResizable: true,
+    }
   });
 };
