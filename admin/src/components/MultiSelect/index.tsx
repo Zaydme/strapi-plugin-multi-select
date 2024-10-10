@@ -56,8 +56,27 @@ const MultiSelect = ({
   }, [value, possibleOptions]);
 
   const fieldError = useMemo(() => {
-    return error ?? (required && !possibleOptions.length ? 'No options' : null);
-  }, [required, error, possibleOptions]);
+    if (error) return error;
+  
+    const { min, max } = attribute;
+    const hasNoOptions = required && (!possibleOptions.length);
+    const belowMin = sanitizedValue.length < min && (required || sanitizedValue.length > 0);
+    const aboveMax = sanitizedValue.length > max;
+  
+    if (hasNoOptions) {
+      return 'No options, but field is required';
+    }
+    
+    if (belowMin) {
+      return `Select at least ${min} options`;
+    }
+    
+    if (aboveMax) {
+      return `Select at most ${max} options`;
+    }
+  
+    return null;
+  }, [required, error, possibleOptions, sanitizedValue, attribute]);
 
   return (
     <Field.Root
@@ -74,6 +93,7 @@ const MultiSelect = ({
           error={fieldError}
           name={name}
           id={name}
+          isOptionDisabled={() => sanitizedValue.length >= attribute['max'] || false}
           isDisabled={disabled || possibleOptions.length === 0}
           placeholder={placeholder}
           defaultValue={sanitizedValue.map((val: { label: string; value: string }) => ({

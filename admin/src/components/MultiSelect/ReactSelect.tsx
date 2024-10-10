@@ -36,6 +36,11 @@ const StyledReactSelect = styled(ReactSelect)`
     .select-multi-value-container {
       margin-right: -8px;
     }
+
+    & [aria-disabled='true'] {
+      background: ${({ theme }) => theme.colors.neutral150};
+      border: 1px solid ${({ theme }) => theme.colors.neutral200};
+    }
   }
   .select-menu {
     background: ${({ theme }) => theme.colors.neutral0};

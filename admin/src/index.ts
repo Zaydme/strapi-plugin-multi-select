@@ -43,6 +43,20 @@ export default {
                   defaultMessage: 'Ex:\nOption 1\nOption 2\nOption 3:option-3',
                 },
               },
+              {
+                name: 'default',
+                type: 'json',
+                intlLabel: {
+                  id: getTrad('multi-select.default.label'),
+                  defaultMessage: 'Default value',
+                },
+                description: {
+                  id: getTrad('multi-select.default.description'),
+                  defaultMessage:
+                    'Set the default value of the field in JSON format, be careful with the syntax, ex: ["value-1", "value-2"]',
+                },
+                defaultValue: '[]',
+              },
             ],
           },
         ],
@@ -57,11 +71,11 @@ export default {
                 name: 'required',
                 type: 'checkbox',
                 intlLabel: {
-                  id: 'form.attribute.item.requiredField',
+                  id: 'multi-select.settings.requiredField',
                   defaultMessage: 'Required field',
                 },
                 description: {
-                  id: 'form.attribute.item.requiredField.description',
+                  id: 'multi-select.settings.requiredField.description',
                   defaultMessage: "You won't be able to create an entry if this field is empty",
                 },
               },
@@ -69,12 +83,36 @@ export default {
                 name: 'private',
                 type: 'checkbox',
                 intlLabel: {
-                  id: 'form.attribute.item.private',
+                  id: 'multi-select.settings.private',
                   defaultMessage: 'Private field',
                 },
                 description: {
-                  id: 'form.attribute.item.private.description',
+                  id: 'multi-select.settings.private.description',
                   defaultMessage: 'This field will not show up in the API response',
+                },
+              },
+              {
+                name: 'min',
+                type: 'number',
+                intlLabel: {
+                  id: 'multi-select.settings.minLength',
+                  defaultMessage: 'Minimum items',
+                },
+                description: {
+                  id: 'multi-select.settings.minLength.description',
+                  defaultMessage: 'The minimum number of items allowed (visual feedback only, cannot be enforced)',
+                },
+              },
+              {
+                name: 'max',
+                type: 'number',
+                intlLabel: {
+                  id: 'multi-select.settings.maxLength',
+                  defaultMessage: 'Maximum items',
+                },
+                description: {
+                  id: 'multi-select.settings.maxLength.description',
+                  defaultMessage: 'The maximum number of items allowed (client-side enforcement only)',
                 },
               },
             ],
