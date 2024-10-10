@@ -1,12 +1,13 @@
-import pluginId from './pluginId'
-import MultiSelectIcon from './components/MultiSelectIcon'
-import getTrad from './utils/getTrad'
+import { PLUGIN_ID } from './pluginId';
+import MultiSelectIcon from './components/MultiSelectIcon';
+import { getTrad } from './utils/getTrad';
+import { prefixPluginTranslations } from './utils/prefixPluginTranslations';
 
 export default {
-  register(app) {
+  register(app: any) {
     app.customFields.register({
-      name: 'multi-select',
-      pluginId: 'multi-select',
+      name: PLUGIN_ID,
+      pluginId: PLUGIN_ID,
       type: 'json',
       icon: MultiSelectIcon,
       intlLabel: {
@@ -61,8 +62,7 @@ export default {
                 },
                 description: {
                   id: 'form.attribute.item.requiredField.description',
-                  defaultMessage:
-                    "You won't be able to create an entry if this field is empty",
+                  defaultMessage: "You won't be able to create an entry if this field is empty",
                 },
               },
               {
@@ -74,35 +74,36 @@ export default {
                 },
                 description: {
                   id: 'form.attribute.item.private.description',
-                  defaultMessage:
-                    'This field will not show up in the API response',
+                  defaultMessage: 'This field will not show up in the API response',
                 },
               },
             ],
           },
         ],
       },
-    })
+    });
   },
 
-  async registerTrads({ locales }) {
+  async registerTrads({ locales }: { locales: string[] }) {
     const importedTrads = await Promise.all(
       locales.map((locale) => {
         return Promise.all([import(`./translations/${locale}.json`)])
           .then(([pluginTranslations]) => {
             return {
-              data: Object.keys(pluginTranslations.default).reduce((acc, current) => ({...acc, [`${pluginId}.${current}`]: trad[current]})),
+              data: {
+                ...prefixPluginTranslations(pluginTranslations.default, PLUGIN_ID),
+              },
               locale,
-            }
+            };
           })
           .catch(() => {
             return {
               data: {},
               locale,
-            }
-          })
-      }),
-    )
-    return Promise.resolve(importedTrads)
+            };
+          });
+      })
+    );
+    return Promise.resolve(importedTrads);
   },
-}
+};
