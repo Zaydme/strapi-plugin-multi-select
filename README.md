@@ -75,10 +75,10 @@ in this case the API will return
 {
   "data": {
     "id": 1,
-    "attributes": {
-      "stuff": ["Banana", "citron"]
-    }
-  }
+    "documentId": "ah6m3p7h3zniivl7usx3yzcn",
+    "stuff": ["Banana", "citron"]
+  },
+  "meta": {}
 }
 ```
 
