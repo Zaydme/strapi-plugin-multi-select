@@ -1,0 +1,18 @@
+{
+  "name": "multi-select-e2e-app",
+  "private": true,
+  "description": "Strapi app for the end-to-end tests, see tests/e2e/scripts/start-app.mjs",
+  "scripts": {
+    "build": "strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start"
+  },
+  "dependencies": {
+    "@strapi/strapi": "^5.0.0",
+    "better-sqlite3": "^12.8.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.3",
+    "styled-components": "^6.1.13"
+  }
+}

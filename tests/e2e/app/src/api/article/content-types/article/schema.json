@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "colors": {
+      "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
+      "options": ["Red:red", "Green:green", "Navy:blue:navy"],
+      "default": "[\"green\"]"
+    },
+    "sizes": {
+      "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
+      "options": ["S", "M", "L", "XL"],
+      "min": 2,
+      "max": 3
+    },
+    "flags": {
+      "type": "customField",
+      "customField": "plugin::multi-select.multi-select",
+      "options": ["Featured:featured", "Archived:archived"],
+      "private": true
+    }
+  }
+}

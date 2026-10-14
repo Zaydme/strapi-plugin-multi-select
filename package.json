@@ -44,6 +44,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "test:ts:back": "tsc -p server/tsconfig.json --noEmit",
     "test:ts:front": "tsc -p admin/tsconfig.json",
     "test:ts:tests": "tsc -p tests/tsconfig.json",
@@ -59,6 +60,7 @@
     "react-intl": "^6.7.2"
   },
   "devDependencies": {
+    "@playwright/test": "~1.63.0",
     "@strapi/sdk-plugin": "^6.1.1",
     "@strapi/strapi": "^5.57.0",
     "@strapi/typescript-utils": "^5.57.0",

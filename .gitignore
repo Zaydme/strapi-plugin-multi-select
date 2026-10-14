@@ -136,3 +136,6 @@ yarn-error.log
 ############################
 
 coverage
+test-results
+playwright-report
+tests/e2e/.auth

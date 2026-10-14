@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig/client.json",
-  "include": ["./**/*.ts", "./**/*.tsx", "../admin/custom.d.ts"],
+  "include": ["./**/*.ts", "./**/*.tsx", "../admin/custom.d.ts", "../playwright.config.ts"],
   "compilerOptions": {
     "types": ["node"]
   }

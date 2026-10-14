@@ -82,6 +82,17 @@ in this case the API will return
 }
 ```
 
+## Development
+
+```
+npm install
+npm run build       # build the plugin into dist/
+npm test            # unit tests (Vitest)
+npm run test:e2e    # end-to-end tests in a real Strapi app (Playwright)
+```
+
+`npm run test:e2e` packs the plugin, installs the tarball into a copy of the Strapi app in `tests/e2e/app`, then drives the admin panel and the REST API. The app is created outside the repository (in the OS temp directory, or `E2E_APP_DIR` if set), so it only sees what the published package provides. Run `npx playwright install chromium` once before the first run.
+
 ---
 
 You can also check the [multi-country-select](https://github.com/zaydme/strapi-plugin-multi-country-select) plugin
