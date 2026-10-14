@@ -1,0 +1,7 @@
+{
+  "extends": "../tsconfig/client.json",
+  "include": ["./**/*.ts", "./**/*.tsx", "../admin/custom.d.ts"],
+  "compilerOptions": {
+    "types": ["node"]
+  }
+}
