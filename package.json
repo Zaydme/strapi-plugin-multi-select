@@ -41,6 +41,8 @@
   ],
   "scripts": {
     "build": "strapi-plugin build",
+    "test:unit:build": "tsc -p tsconfig.tests.json",
+    "test:unit": "npm run test:unit:build && node --test tests/unit/**/*.test.js",
     "test:ts:back": "run -T tsc -p server/tsconfig.json",
     "test:ts:front": "run -T tsc -p admin/tsconfig.json",
     "verify": "strapi-plugin verify",
