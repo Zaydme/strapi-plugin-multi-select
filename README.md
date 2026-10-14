@@ -3,21 +3,25 @@
 A strapi custom field for selecting multiple options from a provided list of items.
 
 ### CHANGELOG
+
 **2.1.0**
+
 - Add default value support [#16](https://github.com/Zaydme/strapi-plugin-multi-select/issues/16)
 - Add Min and Max selection limits
 
 ![multi-select screenshot default value JSON](./screenshots/multi-select-default-value.png)
 
 **2.0.1**
+
 - Preserve selection order when displaying previously selected options [#21](https://github.com/Zaydme/strapi-plugin-multi-select/issues/21)
 
 **2.0.0**
+
 - Migrated to Strapi v5, and the new plugin structure
 - Now using @strapi/sdk-plugin
 - Migrated to TypeScript
 
-**1.2.2** Support colons in option values, only first colon is used as separator 
+**1.2.2** Support colons in option values, only first colon is used as separator
 
 > example usage: `this_is_label:all:of:this:is:value`
 
@@ -25,9 +29,7 @@ A strapi custom field for selecting multiple options from a provided list of ite
 
 > example usage: `my.custom.translations.key:value`
 
-
 **1.2.0** Replace strapi select with react-select
-
 
 ## Installation
 

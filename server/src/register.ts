@@ -9,6 +9,6 @@ export const register = ({ strapi }: { strapi: Core.Strapi }) => {
     inputSize: {
       default: 12,
       isResizable: true,
-    }
+    },
   });
 };

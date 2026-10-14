@@ -100,7 +100,8 @@ export default {
                 },
                 description: {
                   id: 'multi-select.settings.minLength.description',
-                  defaultMessage: 'The minimum number of items allowed (visual feedback only, cannot be enforced)',
+                  defaultMessage:
+                    'The minimum number of items allowed (visual feedback only, cannot be enforced)',
                 },
               },
               {
@@ -112,7 +113,8 @@ export default {
                 },
                 description: {
                   id: 'multi-select.settings.maxLength.description',
-                  defaultMessage: 'The maximum number of items allowed (client-side enforcement only)',
+                  defaultMessage:
+                    'The maximum number of items allowed (client-side enforcement only)',
                 },
               },
             ],

@@ -9,4 +9,3 @@ export const prefixPluginTranslations = (trad: TradOptions, pluginId: string): T
     return acc;
   }, {} as TradOptions);
 };
-

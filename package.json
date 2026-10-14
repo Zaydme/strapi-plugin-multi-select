@@ -41,6 +41,8 @@
   ],
   "scripts": {
     "build": "strapi-plugin build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test:ts:back": "tsc -p server/tsconfig.json --noEmit",
     "test:ts:front": "tsc -p admin/tsconfig.json",
     "verify": "strapi-plugin verify",
