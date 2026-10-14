@@ -4,6 +4,13 @@ A strapi custom field for selecting multiple options from a provided list of ite
 
 ### CHANGELOG
 
+**2.1.2**
+
+- Remove `@strapi/sdk-plugin` from `peerDependencies`. It is only needed to build the plugin, and requiring it conflicted with plugins built with sdk-plugin v6 [#41](https://github.com/Zaydme/strapi-plugin-multi-select/issues/41)
+- Build with `@strapi/sdk-plugin` v6
+- Give the remove button of each selected option an accessible label, and stop it from opening the dropdown
+- Add unit and end-to-end tests, run in CI against the latest Strapi 5
+
 **2.1.0**
 
 - Add default value support [#16](https://github.com/Zaydme/strapi-plugin-multi-select/issues/16)
