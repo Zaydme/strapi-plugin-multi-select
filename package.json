@@ -53,9 +53,9 @@
     "react-intl": "^6.7.2"
   },
   "devDependencies": {
-    "@strapi/sdk-plugin": "^5.2.6",
-    "@strapi/strapi": "^5.0.4",
-    "@strapi/typescript-utils": "^5.0.4",
+    "@strapi/sdk-plugin": "^6.1.1",
+    "@strapi/strapi": "^5.57.0",
+    "@strapi/typescript-utils": "^5.57.0",
     "@tsconfig/node18": "^18.2.4",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
@@ -67,7 +67,6 @@
     "typescript": "^5.6.3"
   },
   "peerDependencies": {
-    "@strapi/sdk-plugin": "^5.2.6",
     "@strapi/strapi": "^5.0.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
