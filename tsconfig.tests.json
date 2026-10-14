@@ -15,6 +15,7 @@
     "admin/src/pluginId.ts",
     "admin/src/utils/getTrad.ts",
     "admin/src/utils/prefixPluginTranslations.ts",
-    "server/src/register.ts"
+    "server/src/register.ts",
+    "tests/types/**/*.d.ts"
   ]
 }
